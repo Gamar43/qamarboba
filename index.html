@@ -36,7 +36,145 @@
             font-family: 'dgsabah'!important;
             font-weight: 300!important;
         }
-    </style>
+    
+
+    /* ── Wrapper ── */
+    .framescape {
+      position: relative;
+      width: 1200px;
+      height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Ticker strip ── */
+    .ticker-track {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 100%;
+      height: 360px;
+      overflow: hidden;
+      z-index: 0;
+      /* soft edge fade */
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%
+      );
+    }
+
+    .ticker-inner {
+      display: flex;
+      gap: 10px;
+      padding-top: 40px;
+      /* total width = 6 images × 300px + 5 gaps × 10px = 1850px; duplicate for loop */
+      width: max-content;
+      animation: ticker-scroll 18s linear infinite;
+    }
+    .ticker-inner {
+  width: max-content;
+  animation: ticker-scroll 18s linear infinite;
+}
+
+
+
+    .ticker-inner:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes ticker-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .ticker-img {
+      width: 300px;
+      height: 300px;
+      border-radius: 16px;
+      object-fit: cover;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    /* ── Main image card ── */
+    .main-card {
+      position: relative;
+      z-index: 1;
+      padding: 12px;
+      background: rgb(255 242 225 / var(--tw-bg-opacity, 1));
+      border-radius: 24px;
+      box-shadow:
+        0.59px  0.59px  0.84px -0.75px rgba(0,0,0,.18),
+        1.61px  1.61px  2.28px -1.5px  rgba(0,0,0,.18),
+        3.54px  3.54px  5.01px -2.25px rgba(0,0,0,.17),
+        7.87px  7.87px 11.13px -3px    rgba(0,0,0,.14),
+        20px   20px    28.28px -3.75px rgba(0,0,0,.06),
+       -0.59px -0.59px  0.84px -0.75px rgba(0,0,0,.18),
+       -1.61px -1.61px  2.28px -1.5px  rgba(0,0,0,.18),
+       -3.54px -3.54px  5.01px -2.25px rgba(0,0,0,.17),
+       -7.87px -7.87px 11.13px -3px    rgba(0,0,0,.14),
+       -20px  -20px    28.28px -3.75px rgba(0,0,0,.06);
+
+      /* appear animation */
+      opacity: 0;
+      transform: perspective(500px) rotateX(10deg) translateY(20px);
+      animation: card-appear 0.5s cubic-bezier(0.44, 0, 0.56, 1) 0.5s forwards;
+    }
+
+    @keyframes card-appear {
+      to {
+        opacity: 1;
+        transform: perspective(500px) rotateX(0deg) translateY(0px);
+      }
+    }
+
+    .main-img {
+      width: 338px;
+      height: 451px;
+      border-radius: 12px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── Responsive: Phone ── */
+    @media (max-width: 600px) {
+      .framescape {
+        width: 390px;
+        height: 400px;
+      }
+
+      .ticker-track {
+        height: 180px;
+      }
+
+      .ticker-img {
+        width: 160px;
+        height: 160px;
+      }
+
+      .main-card {
+        border-radius: 16px;
+      }
+
+      .main-img {
+        width: 200px;
+        height: 266px;
+      }
+    }
+  </style>
 </head>
 <body style="font-family: 'dgsabah'!important;" class="font-body-md text-body-md antialiased overflow-x-hidden">
 <!-- TopNavBar -->
@@ -65,6 +203,54 @@
 </nav>
 <main>
 <!-- 1. HERO -->
+
+<div class="framescape" style="background-color:rgb(40 0 0 / var(--tw-text-opacity, 1)); width:100%;" loop>
+
+  <!-- Ticker -->
+  <div class="ticker-track">
+    <div class="ticker-inner" id="ticker">
+      <!-- original set -->
+      <img class="ticker-img" src="style/img1.jpg" alt="Image 1" />
+      <img class="ticker-img" src="style/img2.jpg" alt="Image 2" />
+      <img class="ticker-img" src="style/img3.jpg" alt="Image 3" />
+      <img class="ticker-img" src="style/img4.jpg" alt="Image 4" />
+      <img class="ticker-img" src="style/img6.jpg" alt="Image 5" />
+      <img class="ticker-img" src="style/img7.jpg" alt="Image 6" />
+      <!-- duplicate for seamless loop -->
+      <img class="ticker-img" src="style/img1.jpg" alt="Image 1" />
+      <img class="ticker-img" src="style/img2.jpg" alt="Image 2" />
+      <img class="ticker-img" src="style/img3.jpg" alt="Image 3" />
+      <img class="ticker-img" src="style/img4.jpg" alt="Image 4" />
+      <img class="ticker-img" src="style/img6.jpg" alt="Image 5" />
+      <img class="ticker-img" src="style/img7.jpg" alt="Image 6" />
+
+      <img class="ticker-img" src="style/img1.jpg" alt="Image 1" />
+      <img class="ticker-img" src="style/img2.jpg" alt="Image 2" />
+      <img class="ticker-img" src="style/img3.jpg" alt="Image 3" />
+      <img class="ticker-img" src="style/img4.jpg" alt="Image 4" />
+      <img class="ticker-img" src="style/img6.jpg" alt="Image 5" />
+      <img class="ticker-img" src="style/img7.jpg" alt="Image 6" />
+    </div>
+  </div>
+
+  <!-- Main card -->
+  <div class="main-card">
+    <img
+      class="main-img"
+      src="style/img5.jpg"
+      alt="Main Image"
+    />
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
 <section class="w-full px-margin-mobile md:px-gutter py-section-gap-mobile md:py-section-gap-desktop max-w-container-max-width mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
 <!-- Left: Copy -->
@@ -80,7 +266,7 @@
                         اكتشفي تركيبات "القمر بوبا" المبتكرة للعناية بالبشرة. حلول متطورة مصممة خصيصاً لإعادة التوازن، النضارة، والحيوية لبشرتكِ.
                     </p>
 <a class="mt-4 px-10 py-4 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:scale-102 transition-transform duration-300 shadow-ambient inline-flex items-center gap-2 group" href="#shop" style="font-family: 'dgsabah'!important; font-weight: 400!important;">
-                        تسوقي المجموعة الآن
+                        اطلبي الان  
                         <span class="material-symbols-outlined text-sm group-hover:-translate-x-1 transition-transform">arrow_back</span>
 </a>
 </div>
@@ -479,8 +665,8 @@
 <!-- Brand & Copyright -->
 <div class="col-span-1 md:col-span-1 flex flex-col justify-between">
 <div>
-<h4 class="font-headline-md text-headline-md text-primary mb-6">القمر</h4>
-<p class="font-body-md text-body-md text-on-surface-variant mb-4 max-w-xs">دقة نباتية لروتينك العصري.</p>
+<img  style="margin: 20px;" alt="Logo for 'القمر' featuring a minimalist crescent moon icon in deep navy blue, accompanied by the brand name in elegant Arabic calligraphy. The design is sleek and modern, reflecting a blend of natural beauty and scientific precision." class="h-8 w-auto" src="style/logo.png"/>
+<!-- <p class="font-body-md text-body-md text-on-surface-variant mb-4 max-w-xs">دقة نباتية لروتينك العصري.</p> -->
 </div>
 <p class="font-label-sm text-label-sm text-secondary mt-12 md:mt-0">© 2024 القمر. جميع الحقوق محفوظة.</p>
 </div>
@@ -543,4 +729,34 @@
             });
         });
     </script>
+    <script>
+//   const belt  = document.getElementById('belt');
+//   const track = belt.parentElement;
+//   const SPEED = 40; // px / second
+
+//   // Clone the belt so we always have content to scroll into
+//   const clone = belt.cloneNode(true);
+//   track.appendChild(clone);
+
+//   let offset   = 0;
+//   let lastTime = null;
+//   let paused   = false;
+
+//   track.addEventListener('mouseenter', () => paused = true);
+//   track.addEventListener('mouseleave', () => paused = false);
+
+//   function loop(ts) {
+//     if (lastTime !== null && !paused) {
+//       const dt      = (ts - lastTime) / 1000;
+//       const setW    = belt.offsetWidth + 10; // width of one full set (incl. gap)
+//       offset = (offset + SPEED * dt) % setW;
+//       belt.style.transform  = translateX(${-offset}px);
+//       clone.style.transform = translateX(${setW - offset}px);
+//     }
+//     lastTime = ts;
+//     requestAnimationFrame(loop);
+//   }
+
+//   requestAnimationFrame(loop);
+</script>
 </body></html>
